@@ -15,3 +15,5 @@ grammar_input, sentence = input.strip('\"').split('\"')
 
 grammar = Grammar.from_string(grammar_input)
 grammar.generate_ll1_table()
+
+print(f"<{grammar.print_ll1_table()}{grammar.verify_if_valid_sentence(sentence)}>")

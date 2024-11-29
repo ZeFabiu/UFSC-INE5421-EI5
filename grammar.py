@@ -250,4 +250,51 @@ class Grammar:
                 if right_prod == '&':
                     for follow_t in self.follow_set[left_prod]:
                         self.ll1_table[(left_prod,follow_t)] = right_prod
-            
+    
+    def print_ll1_table(self):
+        str_table = []
+        for (line, column), production in self.ll1_table.items():
+            str_table.append(f"[{line},{column},{production}]")
+
+        string = (
+            f"<{{{','.join(self.non_terminals)}}};"
+            f"{self.initial_symbol};"
+            f"{{{','.join(self.terminals)},$}};"
+            f"{''.join(sorted(str_table))}>"
+        )
+
+        return string
+    
+    def verify_if_valid_sentence(self, sentence):
+        sentence += '$'
+        stack = '$' + self.initial_symbol
+
+        try:
+            while True:
+                # If both top of stack and header are on $ (end of sentence symbol),
+                # end accepting the sentence
+                if stack[-1] == '$' and sentence[0] == '$':
+                    return "<sim>"
+                
+                # If top of stack has the same symbol as the header and symbol =/= $,
+                # pop top of stack and move header forward
+                elif stack[-1] == sentence[0] and sentence[0] != '$':
+                    stack = stack[:-1]
+                    sentence = sentence[1:]
+                
+                # If symbol on top of stack is a non-terminal, check LL1 table,
+                # pop non-terminal and push the corresponding production reversed
+                elif stack[-1] in self.non_terminals:
+                    production = self.ll1_table[(stack[-1],sentence[0])]
+
+                    stack = stack[:-1]
+
+                    if production != '&':
+                        stack += production[::-1]
+        
+        except KeyError:
+            return "<nao>"
+
+
+
+
