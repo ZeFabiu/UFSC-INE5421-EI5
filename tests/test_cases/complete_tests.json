@@ -27,5 +27,46 @@
             }
         },
         "expected_output": "<<{A,B,E,F,T};E;{c,i,m,o,v,$};[A,c,&][A,m,mTA][A,$,&][B,c,&][B,m,&][B,v,vFB][B,$,&][E,i,TA][E,o,TA][F,i,i][F,o,oEc][T,i,FB][T,o,FB]><sim>>"
+    },
+    {
+        "name": "Complex grammar test with multiple productions",
+        "input": "{P,K,T,V,L}{b,e,c,t,v,m}{P}{P = KL; P = bKLe; K = cK; K = TV; T = tT; T = &; V = vV; V = &; L = mL; L = &};\"bctvme\"",
+        "expected_table": {
+            "P": {
+                "b": "bKLe",
+                "c": "KL",
+                "m": "KL",
+                "t": "KL",
+                "v": "KL",
+                "$": "KL"
+            },
+            "K": {
+                "c": "cK",
+                "e": "TV",
+                "m": "TV",
+                "t": "TV",
+                "v": "TV",
+                "$": "TV"
+            },
+            "T": {
+                "e": "&",
+                "m": "&",
+                "t": "tT",
+                "v": "&",
+                "$": "&"
+            },
+            "V": {
+                "e": "&",
+                "m": "&",
+                "v": "vV",
+                "$": "&"
+            },
+            "L": {
+                "e": "&",
+                "m": "mL",
+                "$": "&"
+            }
+        },
+        "expected_output": "<<{K,L,P,T,V};P;{b,c,e,m,t,v,$};[K,c,cK][K,e,TV][K,m,TV][K,t,TV][K,v,TV][K,$,TV][L,e,&][L,m,mL][L,$,&][P,b,bKLe][P,c,KL][P,m,KL][P,t,KL][P,v,KL][P,$,KL][T,e,&][T,m,&][T,t,tT][T,v,&][T,$,&][V,e,&][V,m,&][V,v,vV][V,$,&]><sim>>"
     }
 ]
