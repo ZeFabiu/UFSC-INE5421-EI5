@@ -1,0 +1,14 @@
+[
+    {
+        "name": "Valid sentence test",
+        "grammar": "{E,A,T,B,F}{m,v,i,o,c}{E}{E = TA; A = mTA; A = &; T = FB; B = vFB; B = &; F = i; F = oEc}",
+        "sentence": "oimicvi",
+        "expected_result": "sim"
+    },
+    {
+        "name": "Invalid sentence test",
+        "grammar": "{E,A,T,B,F}{m,v,i,o,c}{E}{E = TA; A = mTA; A = &; T = FB; B = vFB; B = &; F = i; F = oEc}",
+        "sentence": "oimicv",
+        "expected_result": "nao"
+    }
+] 

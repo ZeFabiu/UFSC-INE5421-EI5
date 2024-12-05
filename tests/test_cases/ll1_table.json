@@ -1,0 +1,30 @@
+[
+    {
+        "name": "Simple LL(1) grammar test",
+        "input": "{E,A,T,B,F}{m,v,i,o,c}{E}{E = TA; A = mTA; A = &; T = FB; B = vFB; B = &; F = i; F = oEc}",
+        "expected_table": {
+            "E": {
+                "i": "TA",
+                "o": "TA"
+            },
+            "A": {
+                "m": "mTA",
+                "$": "&",
+                "v": "&"
+            },
+            "T": {
+                "i": "FB",
+                "o": "FB"
+            },
+            "B": {
+                "v": "vFB",
+                "m": "&",
+                "$": "&"
+            },
+            "F": {
+                "i": "i",
+                "o": "oEc"
+            }
+        }
+    }
+] 
