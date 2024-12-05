@@ -1,0 +1,31 @@
+[
+    {
+        "name": "Complete grammar test with sentence validation",
+        "input": "{E,A,T,B,F}{m,v,i,o,c}{E}{E = TA; A = mTA; A = &; T = FB; B = vFB; B = &; F = i; F = oEc};\"oimicvi\"",
+        "expected_table": {
+            "E": {
+                "i": "TA",
+                "o": "TA"
+            },
+            "A": {
+                "m": "mTA",
+                "$": "&",
+                "v": "&"
+            },
+            "T": {
+                "i": "FB",
+                "o": "FB"
+            },
+            "B": {
+                "v": "vFB",
+                "m": "&",
+                "$": "&"
+            },
+            "F": {
+                "i": "i",
+                "o": "oEc"
+            }
+        },
+        "expected_output": "<<{A,B,E,F,T};E;{c,i,m,o,v,$};[A,c,&][A,m,mTA][A,$,&][B,c,&][B,m,&][B,v,vFB][B,$,&][E,i,TA][E,o,TA][F,i,i][F,o,oEc][T,i,FB][T,o,FB]><sim>>"
+    }
+]
