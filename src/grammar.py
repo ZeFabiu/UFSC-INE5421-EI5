@@ -254,13 +254,26 @@ class Grammar:
     def print_ll1_table(self):
         str_table = []
         for (line, column), production in self.ll1_table.items():
-            str_table.append(f"[{line},{column},{production}]")
+            str_table.append((line, column, production))
+        
+        # Custom sort key function that puts special characters after letters
+        def sort_key(item):
+            line, column, production = item
+            # For column, make '$' sort after letters
+            column_key = (1, column) if column == '$' else (0, column)
+            return (line, column_key, production)
+        
+        # Sort using custom key function
+        str_table.sort(key=sort_key)
+        
+        # Convert to string format after sorting
+        str_table = [f"[{line},{column},{production}]" for line, column, production in str_table]
 
         string = (
-            f"<{{{','.join(self.non_terminals)}}};"
+            f"<{{{','.join(sorted(self.non_terminals))}}};"
             f"{self.initial_symbol};"
-            f"{{{','.join(self.terminals)},$}};"
-            f"{''.join(sorted(str_table))}>"
+            f"{{{','.join(sorted(x for x in self.terminals))},$}};"
+            f"{''.join(str_table)}>"
         )
 
         return string
