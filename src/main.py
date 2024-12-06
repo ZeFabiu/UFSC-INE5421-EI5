@@ -26,6 +26,8 @@ if __name__ == "__main__":
     if len(sys.argv) > 1:
         input_str = sys.argv[1]
     else:
+        input_str = "{E,A,T,B,F}{m,v,i,o,c}{E}{E = TA; A = mTA; A = &; T = FB; B = vFB; B = &; F = i; F = oEc};\"oimicvi\""
         input_str = "{P,K,T,V,L}{b,e,c,t,v,m}{P}{P = KL; P = bKLe; K = cK; K = TV; T = tT; T = &; V = vV; V = &; L = mL; L = &};\"bctvme\""
+        input_str = "{P,K,V,F,C}{c,v,f,i,b,e,m}{P}{P = KVC; K = cK; K = &; V = vV; V = F; F = fPiF; F = &; C = bVCe; C = miC; C = &};\"cvfcvbveimi\""
     
     print(process_input(input_str))

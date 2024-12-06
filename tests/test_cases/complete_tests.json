@@ -68,5 +68,54 @@
             }
         },
         "expected_output": "<<{K,L,P,T,V};P;{b,c,e,m,t,v,$};[K,c,cK][K,e,TV][K,m,TV][K,t,TV][K,v,TV][K,$,TV][L,e,&][L,m,mL][L,$,&][P,b,bKLe][P,c,KL][P,m,KL][P,t,KL][P,v,KL][P,$,KL][T,e,&][T,m,&][T,t,tT][T,v,&][T,$,&][V,e,&][V,m,&][V,v,vV][V,$,&]><sim>>"
+    },
+    {
+        "name": "Complex grammar test with nested productions",
+        "input": "{P,K,V,F,C}{c,v,f,i,b,e,m}{P}{P = KVC; K = cK; K = &; V = vV; V = F; F = fPiF; F = &; C = bVCe; C = miC; C = &};\"cvfcvbveimi\"",
+        "expected_table": {
+            "P": {
+                "b": "KVC",
+                "c": "KVC",
+                "f": "KVC",
+                "i": "KVC",
+                "m": "KVC",
+                "v": "KVC",
+                "$": "KVC"
+            },
+            "K": {
+                "b": "&",
+                "c": "cK",
+                "f": "&",
+                "i": "&",
+                "m": "&",
+                "v": "&",
+                "$": "&"
+            },
+            "V": {
+                "b": "F",
+                "e": "F",
+                "f": "F",
+                "i": "F",
+                "m": "F",
+                "v": "vV",
+                "$": "F"
+            },
+            "F": {
+                "b": "&",
+                "e": "&",
+                "f": "fPiF",
+                "i": "&",
+                "m": "&",
+                "$": "&"
+            },
+            "C": {
+                "b": "bVCe",
+                "e": "&",
+                "i": "&",
+                "m": "miC",
+                "$": "&"
+            }
+        },
+        "expected_output": "<<{C,F,K,P,V};P;{b,c,e,f,i,m,v,$};[C,b,bVCe][C,e,&][C,i,&][C,m,miC][C,$,&][F,b,&][F,e,&][F,f,fPiF][F,i,&][F,m,&][F,$,&][K,b,&][K,c,cK][K,f,&][K,i,&][K,m,&][K,v,&][K,$,&][P,b,KVC][P,c,KVC][P,f,KVC][P,i,KVC][P,m,KVC][P,v,KVC][P,$,KVC][V,b,F][V,e,F][V,f,F][V,i,F][V,m,F][V,v,vV][V,$,F]><sim>>"
     }
 ]
