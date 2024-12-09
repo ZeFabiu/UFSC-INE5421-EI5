@@ -241,7 +241,11 @@ class Grammar:
                 # If first symbol is non-terminal, for every terminal in First(a), include A :== a in M[A,a]
                 if right_prod[0] in self.non_terminals:
                     for first_t in self.first_set[right_prod[0]]:
-                        self.ll1_table[(left_prod,first_t)] = right_prod
+                        if first_t == '&':
+                            for follow_t in self.follow_set[left_prod]:
+                                self.ll1_table[(left_prod,follow_t)] = right_prod
+                        else:
+                            self.ll1_table[(left_prod,first_t)] = right_prod
                 # If first symbol is terminal, include A :== a in M[A,a]
                 elif right_prod[0] in self.terminals:
                     self.ll1_table[(left_prod,right_prod[0])] = right_prod
